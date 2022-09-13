@@ -1,0 +1,42 @@
+
+
+//     https://leetcode.com/problems/find-triangular-sum-of-an-array/
+
+// link of prblm
+
+
+
+-------------------------------------------------------
+
+class Solution {
+public:
+    int triangularSum(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1) return nums[0];
+        if(n==2) return (nums[0]+nums[1])%10;
+        int i=0;
+        int j=n-1;
+        long long int answer=0;
+        int denominator=1;
+        int counter=n-1;
+        long long int value=1;
+        long long int times=1;
+        answer=(nums[i]%10+nums[j]%10);
+        i++;
+        j--;
+        while(i<=j){
+               times=times*counter)/denominator;
+                cout<<times<<endl;
+                 counter--;
+                 denominator++;   
+            if(i!=j){
+                 answer+=(nums[i]*times)%10+(nums[j]*times)%10;                   //issue is times is overflowing off long long int
+            }
+            else 
+                answer+=(nums[i]*times)%10;
+            i++;j--;
+            }
+           return answer%10;
+        }      
+    
+};
